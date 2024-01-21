@@ -1,6 +1,5 @@
 import authConfig from "./auth.config";
 import NextAuth from "next-auth";
-export const { auth } = NextAuth(authConfig);
 
 import {
   publicRoutes,
@@ -8,6 +7,8 @@ import {
   apiAuthPrefix,
   DEFAULT_LOGIN_REDIRECT,
 } from "@/routes";
+
+const { auth } = NextAuth(authConfig);
 
 export default auth((req) => {
   const { nextUrl } = req;

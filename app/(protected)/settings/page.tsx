@@ -5,7 +5,7 @@ export default async function SettingsPage() {
   const session = await auth();
 
   return (
-    <div>
+    <div className=" flex flex-col items-center justify-center ">
       {JSON.stringify(session)}
       <form
         action={async () => {
