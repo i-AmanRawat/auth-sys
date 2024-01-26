@@ -5,28 +5,28 @@ import { BeatLoader } from "react-spinners";
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { newVerification } from "@/action/new-verification";
-import { FormError } from "@/components/auth/form-error";
-import { FormSuccess } from "@/components/auth/form-success";
+import { FormError } from "@/components/form-error";
+import { FormSuccess } from "@/components/form-success";
 
 export async function NewVerificationForm() {
-  const [errorMessage, setErrorMesssage] = useState<string | undefined>();
-  const [successMessage, setSuccessMesssage] = useState<string | undefined>();
+  const [errorMessage, setErrorMessage] = useState<string | undefined>();
+  const [successMessage, setSuccessMessage] = useState<string | undefined>();
 
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
 
   const onSubmit = useCallback(() => {
     if (!token) {
-      setErrorMesssage("Missing token!");
+      setErrorMessage("Missing token!");
       return;
     }
     newVerification(token)
       .then((data) => {
-        setErrorMesssage(data.error);
-        setSuccessMesssage(data.success);
+        setErrorMessage(data.error);
+        setSuccessMessage(data.success);
       })
       .catch(() => {
-        setErrorMesssage("Something went wrong!");
+        setErrorMessage("Something went wrong!");
       });
   }, [token]);
 
