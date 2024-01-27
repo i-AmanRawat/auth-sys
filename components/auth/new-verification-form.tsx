@@ -8,7 +8,7 @@ import { newVerification } from "@/action/new-verification";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
 
-export async function NewVerificationForm() {
+export function NewVerificationForm() {
   const [errorMessage, setErrorMessage] = useState<string | undefined>();
   const [successMessage, setSuccessMessage] = useState<string | undefined>();
 
@@ -16,6 +16,9 @@ export async function NewVerificationForm() {
   const token = searchParams.get("token");
 
   const onSubmit = useCallback(() => {
+    setErrorMessage("");
+    setSuccessMessage("");
+
     if (!token) {
       setErrorMessage("Missing token!");
       return;
@@ -35,16 +38,18 @@ export async function NewVerificationForm() {
   }, [onSubmit]);
 
   return (
-    <CardWrapper
-      headerLabel="Confirming your verification"
-      backButtonLabel="Back to login"
-      backButtonHref="/auth/login"
-    >
-      <div className="w-full flex justify-center items-center">
-        {!successMessage && !errorMessage && <BeatLoader />}
-        <FormSuccess message={successMessage} />
-        <FormError message={errorMessage} />
-      </div>
-    </CardWrapper>
+    <div className="">
+      <CardWrapper
+        headerLabel="Confirming your verification"
+        backButtonLabel="Back to login"
+        backButtonHref="/auth/login"
+      >
+        <div className="w-full flex justify-center items-center">
+          {!successMessage && !errorMessage && <BeatLoader />}
+          <FormSuccess message={successMessage} />
+          <FormError message={errorMessage} />
+        </div>
+      </CardWrapper>
+    </div>
   );
 }

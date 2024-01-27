@@ -1,12 +1,16 @@
 import { db } from "@/lib/db";
 
 export async function getVerificationTokenByToken(token: string) {
+  console.log(token);
   try {
-    const verificationToken = await db.verificationToken.findUnique({
+    const verificationToken = await db.verificationToken.findFirst({
       where: {
-        token,
+        token: {
+          equals: token,
+        },
       },
     });
+    console.log("verification token: ", verificationToken);
 
     return verificationToken;
   } catch (error) {

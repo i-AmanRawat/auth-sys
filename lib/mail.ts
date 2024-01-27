@@ -23,3 +23,12 @@ export async function sendVerificationEmail(email: string, token: string) {
     html: `<p>click <a href = ${confirmationLink}>here</a> to confirm email.</p>`,
   });
 }
+
+export async function sendTwoFactorTokenEmail(email: string, token: string) {
+  await resend.emails.send({
+    from: "onboarding@resend.dev",
+    to: email,
+    subject: "2FA code",
+    html: `<p>Your 2FA code : ${token}</p>`,
+  });
+}
