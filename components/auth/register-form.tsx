@@ -52,7 +52,7 @@ export function RegisterForm() {
     <>
       <CardWrapper
         headerLabel="Create an account"
-        backButtonLabel="Don't have an account?"
+        backButtonLabel="Have an account?"
         backButtonHref="/auth/login "
         showSocial
       >

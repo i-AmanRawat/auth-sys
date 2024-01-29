@@ -16,7 +16,6 @@ export function LoginButton({
   const route = useRouter();
 
   function onClickHandler() {
-    console.log("onclick fired!!");
     route.push("/auth/login");
   }
 

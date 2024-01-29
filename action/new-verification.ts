@@ -6,9 +6,9 @@ import { db } from "@/lib/db";
 
 export async function newVerification(token: string) {
   const existingToken = await getVerificationTokenByToken(token);
-  console.log(existingToken);
+
   if (!existingToken) return { error: "Token doesn't exist!" };
-  console.log(existingToken?.token);
+
 
   const hasExpired = new Date(existingToken.expires) < new Date();
 
