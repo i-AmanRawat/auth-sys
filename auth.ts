@@ -3,7 +3,6 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import authConfig from "@/auth.config";
 import { db } from "@/lib/db";
 import { getUserById } from "./data/user";
-import { UserRole } from "@prisma/client";
 import { getTwoFactorConfirmationByUserId } from "./data/two-factor-confirmation";
 import { getAccountByUserId } from "./data/account";
 
@@ -54,6 +53,7 @@ export const {
       return true;
     },
 
+    // @ts-ignore
     async session({ session, token }) {
       if (token.sub && session.user) {
         session.user.id = token.sub;
